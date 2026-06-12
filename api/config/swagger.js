@@ -10,8 +10,9 @@ const documentacao = {
     }
   },
   servers: [
-    { url: 'http://localhost:3000', description: 'Desenvolvimento' },
-    { url: 'https://api-murex-one-28.vercel.app', description: 'Produção' }],
+    { url: 'https://api-murex-one-28.vercel.app', description: 'Produção' },
+    { url: 'http://localhost:3000', description: 'Desenvolvimento' }
+  ],
   tags: [
     { name: 'Usuários', description: 'Gerenciamento de usuários' },
     { name: 'Setores', description: 'Gerenciamento de setores' },

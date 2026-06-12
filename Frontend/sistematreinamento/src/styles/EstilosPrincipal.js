@@ -1,7 +1,4 @@
-const corFundoEscuro = '#0a0f1d';
-const corTextoClaro = '#ffffff';
-const corTextoMutado = '#8a99ad';
-const corAzulPrincipal = '#1e90ff';
+import { corFundoEscuro, corTextoClaro, corTextoMutado, corAzulPrincipal } from './Estilos'
 
 export const EstilosPrincipal = {
   container: {

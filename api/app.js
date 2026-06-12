@@ -21,7 +21,7 @@ app.use(cors())
 app.get('/swagger', (req, res) => {
     res.send(`<!DOCTYPE html>
 <html><head>
-  <title>API FinaControl</title>
+  <title>API Gerenciamento de Treinamento</title>
   <meta charset="utf-8"/>
   <link rel="stylesheet" href="https://unpkg.com/swagger-ui-dist/swagger-ui.css">
 </head><body>

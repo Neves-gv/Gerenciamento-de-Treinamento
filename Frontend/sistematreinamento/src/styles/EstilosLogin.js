@@ -1,16 +1,13 @@
-const corFundoEscuro = '#0a0f1d'
-const corCard = '#151c2c'
-const corAzulPrincipal = '#1e90ff'
-const corTextoClaro = '#ffffff'
-const corTextoMutado = '#8a99ad'
-const corBordaInput = '#222f44'
-const corFundoInput = '#111827'
-
-export const coresLogin = {
-  icone: corTextoMutado,
-  placeholder: corTextoMutado,
-  gradienteFundo: ['#000000', '#0a1931', '#0052d4']
-}
+import {
+  corFundoEscuro,
+  corCard,
+  corAzulPrincipal,
+  corTextoClaro,
+  corTextoMutado,
+  corBordaInput,
+  corFundoInput,
+  coresLogin
+} from './Estilos'
 
 export const EstilosLogin = {
   container: {
@@ -172,3 +169,5 @@ export const EstilosLogin = {
 }
 
 export default EstilosLogin
+
+export { coresLogin }
