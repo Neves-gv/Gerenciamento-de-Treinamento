@@ -1,9 +1,9 @@
 import { StyleSheet } from 'react-native';
 
-const corFundoEscuro = '#0a0f1d';
+const corFundoEscuro = '#020613';
 const corTextoClaro = '#ffffff';
-const corTextoMutado = '#8a99ad';
-const corAzulPrincipal = '#1e90ff';
+const corTextoMutado = '#c8d1e8';
+const corAzulPrincipal = '#0e4bcf';
 
 export const EstilosPrincipal = StyleSheet.create({
   container: {
@@ -28,7 +28,7 @@ export const EstilosPrincipal = StyleSheet.create({
   },
   subtitulo: {
     fontSize: 16,
-    color: corTextoMutado,
+    color: corTextoClaro,
     textAlign: 'center',
     lineHeight: 22,
     maxWidth: 280,

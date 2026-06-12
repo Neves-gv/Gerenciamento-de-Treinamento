@@ -1,17 +1,17 @@
 import { StyleSheet } from 'react-native';
 
-const corFundoEscuro = '#0a0f1d';
-const corCard = '#151c2c';
-const corAzulPrincipal = '#1e90ff';
-const corTextoClaro = '#ffffff';
-const corTextoMutado = '#8a99ad';
-const corBordaInput = '#222f44';
-const corFundoInput = '#111827';
+export const corFundoEscuro = '#020613';
+export const corCard = '#081427';
+export const corAzulPrincipal = '#0e4bcf';
+export const corTextoClaro = '#ffffff';
+export const corTextoMutado = '#c8d1e8';
+export const corBordaInput = '#142240';
+export const corFundoInput = '#07101f';
 
 export const coresLogin = {
-  icone: corTextoMutado,
-  placeholder: corTextoMutado,
-  gradienteFundo: ['#000000', '#0a1931', '#0052d4']
+  icone: corTextoClaro,
+  placeholder: corTextoClaro,
+  gradienteFundo: ['#000000', '#041028', '#07172f']
 };
 
 export const EstilosLogin = StyleSheet.create({
@@ -53,7 +53,7 @@ export const EstilosLogin = StyleSheet.create({
     marginTop: 2,
     fontSize: 14,
     fontWeight: '300',
-    color: corTextoMutado
+    color: corTextoClaro
   },
   conteudoPrincipal: {
     width: '100%',
@@ -121,13 +121,13 @@ export const EstilosLogin = StyleSheet.create({
     alignItems: 'center'
   },
   rotuloCheckbox: {
-    color: corTextoMutado,
+    color: corTextoClaro,
     fontSize: 14,
     marginLeft: 6
   },
   esqueceuSenha: {
     fontSize: 14,
-    color: corAzulPrincipal,
+    color: corTextoClaro,
     fontWeight: '500'
   },
   mensagemFeedback: {
