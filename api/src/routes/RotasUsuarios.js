@@ -3,7 +3,7 @@ import { BD } from "../../db.js";
 import bcrypt from 'bcrypt';
 import { autenticarToken } from "../middlewares/autenticacao.js";
 
-import jst from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 const router = Router();
 
 // ================= LISTAR USUÁRIOS =================
@@ -21,6 +21,19 @@ router.get('/usuarios', autenticarToken, async (req, res) => {
 router.post('/usuarios',  async (req, res) => {
     const { nome, email, senha, tipo_usuario } = req.body;
     try {
+        if (!nome || !email || !senha) {
+            return res.status(400).json({ error: 'Nome, email e senha são obrigatórios' });
+        }
+        // Validar se email já existe
+        const verificarEmail = await BD.query(
+            `SELECT * FROM USUARIOS WHERE email = $1`,
+            [email]
+        );
+        
+        if (verificarEmail.rows.length > 0) {
+            return res.status(400).json({ error: 'Email já cadastrado no sistema' });
+        }
+
         const saltRounds = 10;
         const senhaCriptografada = await bcrypt.hash(senha, saltRounds);
 
@@ -45,6 +58,9 @@ router.put('/usuarios/:id_usuario', autenticarToken, async (req, res) => {
         );
         if (verificarUsuario.rows.length === 0) {
             return res.status(404).json({ message: 'Usuario não encontrado' })
+        }
+        if (!nome || !email || !senha) {
+            return res.status(400).json({ error: 'Nome, email e senha são obrigatórios para atualizar o usuário' });
         }
 
         const senhaCriptografada = await bcrypt.hash(senha, 10);
@@ -130,7 +146,7 @@ router.post('/login', async (req, res) => {
 
         const SECRET_KEY = 'sua_chave_secreta';
         //Gerando token para retornar e ser usado
-        const token = jst.sign(
+        const token = jwt.sign(
             { id_usuario: usuario.id_usuario, email: usuario.email },
             SECRET_KEY,
             // {expiresIn: '15m'}//tempo para expirar o token

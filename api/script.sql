@@ -1,3 +1,9 @@
+-- Remover tabelas existentes (ordem segura para respeitar FK)
+DROP TABLE IF EXISTS certificados CASCADE;
+DROP TABLE IF EXISTS treinamento CASCADE;
+DROP TABLE IF EXISTS usuarios CASCADE;
+DROP TABLE IF EXISTS setores CASCADE;
+
 -- Tabela de Setores
 CREATE TABLE setores (
     id_setores SERIAL PRIMARY KEY,
@@ -12,7 +18,7 @@ CREATE TABLE usuarios (
     nome VARCHAR(100) NOT NULL,
     email VARCHAR(150) UNIQUE NOT NULL,
     senha VARCHAR(255) NOT NULL,
-	tipo_usuario VARCHAR(20),
+    tipo_usuario VARCHAR(20),
     ativo BOOLEAN DEFAULT TRUE,
     id_setor INT,
     FOREIGN KEY (id_setor) REFERENCES setores(id_setores)
@@ -42,7 +48,3 @@ CREATE TABLE certificados (
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario),
     FOREIGN KEY (id_treinamento) REFERENCES treinamento(id_treinamento) 
 );
-drop table if exists setores cascade;
-drop table if exists usuarios cascade; 
-drop table if exists treinamento cascade;
-drop table if exists certificados cascade;

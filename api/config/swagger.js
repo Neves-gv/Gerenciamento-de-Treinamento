@@ -11,10 +11,8 @@ const documentacao = {
   },
   servers: [
     { url: 'http://localhost:3000', description: 'Desenvolvimento' },
-    { url: 'https://api.sistemadetreinamento.com', description: 'Produção' }
-  ],
+    { url: 'https://api-murex-one-28.vercel.app', description: 'Produção' }],
   tags: [
-    { name: 'Autenticação', description: 'Endpoints de autenticação e login' },
     { name: 'Usuários', description: 'Gerenciamento de usuários' },
     { name: 'Setores', description: 'Gerenciamento de setores' },
     { name: 'Treinamentos', description: 'Gerenciamento de treinamentos' },
@@ -23,24 +21,6 @@ const documentacao = {
     { name: 'Dashboard', description: 'Métricas e estatísticas' }
   ],
   paths: {
-    "/login": {
-      post: {
-        tags: ['Autenticação'],
-        summary: 'Realizar Login',
-        description: "Autentica um usuário com email e senha, retornando um token JWT",
-        requestBody: { 
-          required: true, 
-          content: { 
-            "application/json": { schema: { $ref: "#/components/schemas/Login_Usuario" } } 
-          } 
-        },
-        responses: { 
-          200: { description: "Login realizado com sucesso!", content: { "application/json": { schema: { $ref: "#/components/schemas/Resposta_Login" } } } }, 
-          401: { description: "Email ou senha incorretos" },
-          500: { description: "Erro interno no servidor" } 
-        }
-      }
-    },
     "/usuarios": {
       get: {
         tags: ["Usuários"],
@@ -70,9 +50,9 @@ const documentacao = {
             "application/json": { schema: { $ref: "#/components/schemas/Cadastrar_Usuario" } }
           }
         },
-        responses: { 
-          201: { description: "Usuário cadastrado com sucesso!" }, 
-          500: { description: "Erro ao cadastrar usuário" } 
+        responses: {
+          201: { description: "Usuário cadastrado com sucesso!" },
+          500: { description: "Erro ao cadastrar usuário" }
         }
       }
     },
@@ -125,10 +105,28 @@ const documentacao = {
         description: 'Desativa um usuário existente pelo ID (não deleta, apenas marca como inativo)',
         security: [{ bearerAuth: [] }],
         parameters: [{ name: "id_usuario", in: "path", required: true, description: "ID do usuário", schema: { type: 'integer', example: 1 } }],
-        responses: { 
-          200: { description: "Usuário removido com sucesso!" }, 
-          404: { description: "Usuário não encontrado" }, 
-          500: { description: "Erro ao remover usuário" } 
+        responses: {
+          200: { description: "Usuário removido com sucesso!" },
+          404: { description: "Usuário não encontrado" },
+          500: { description: "Erro ao remover usuário" }
+        }
+      }
+    },
+    "/login": {
+      post: {
+        tags: ['Usuários'],
+        summary: 'Realizar Login',
+        description: "Autentica um usuário com email e senha, retornando um token JWT",
+        requestBody: {
+          required: true,
+          content: {
+            "application/json": { schema: { $ref: "#/components/schemas/Login_Usuario" } }
+          }
+        },
+        responses: {
+          200: { description: "Login realizado com sucesso!", content: { "application/json": { schema: { $ref: "#/components/schemas/Resposta_Login" } } } },
+          401: { description: "Email ou senha incorretos" },
+          500: { description: "Erro interno no servidor" }
         }
       }
     },
@@ -138,7 +136,7 @@ const documentacao = {
         summary: "Listar todos os setores",
         description: "Retorna lista de todos os setores cadastrados",
         security: [{ bearerAuth: [] }],
-        responses: { 
+        responses: {
           200: { description: "Dados obtidos com sucesso!", content: { "application/json": { schema: { type: "array", items: { $ref: '#/components/schemas/Listar_Setores' } } } } },
           401: { description: "Não autorizado" },
           500: { description: "Erro ao listar setores" }
@@ -147,18 +145,17 @@ const documentacao = {
       post: {
         tags: ['Setores'],
         summary: 'Cadastrar novo setor',
-        description: "Cria um novo setor no sistema",
-        security: [{ bearerAuth: [] }],
         description: "Cria um novo setor com nome, imagem e data de criação",
-        requestBody: { 
-          required: true, 
-          content: { 
-            "application/json": { schema: { $ref: "#/components/schemas/Cadastrar_Setor" } } 
-          } 
+        security: [{ bearerAuth: [] }],
+        requestBody: {
+          required: true,
+          content: {
+            "application/json": { schema: { $ref: "#/components/schemas/Cadastrar_Setor" } }
+          }
         },
-        responses: { 
-          201: { description: "Setor cadastrado com sucesso!" }, 
-          500: { description: "Erro ao cadastrar setor" } 
+        responses: {
+          201: { description: "Setor cadastrado com sucesso!" },
+          500: { description: "Erro ao cadastrar setor" }
         }
       }
     },
@@ -169,16 +166,16 @@ const documentacao = {
         security: [{ bearerAuth: [] }],
         description: 'Atualiza todos os dados de um setor (PUT - requer todos os campos)',
         parameters: [{ name: "id_setores", in: "path", required: true, description: "ID do setor", schema: { type: 'integer', example: 1 } }],
-        requestBody: { 
-          required: true, 
-          content: { 
-            "application/json": { schema: { $ref: "#/components/schemas/Atualizar_Setor" }, example: { nome: "Recursos Humanos", imagem_url: "http://example.com/img.png", data_criacao: "2024-01-01" } } 
-          } 
+        requestBody: {
+          required: true,
+          content: {
+            "application/json": { schema: { $ref: "#/components/schemas/Atualizar_Setor" }, example: { nome: "Recursos Humanos", imagem_url: "http://example.com/img.png", data_criacao: "2024-01-01" } }
+          }
         },
-        responses: { 
-          200: { description: "Setor atualizado com sucesso!" }, 
-          404: { description: "Setor não encontrado" }, 
-          500: { description: "Erro ao atualizar setor" } 
+        responses: {
+          200: { description: "Setor atualizado com sucesso!" },
+          404: { description: "Setor não encontrado" },
+          500: { description: "Erro ao atualizar setor" }
         }
       },
       patch: {
@@ -187,16 +184,16 @@ const documentacao = {
         description: 'Atualiza apenas os campos enviados (PATCH - campos opcionais)',
         security: [{ bearerAuth: [] }],
         parameters: [{ name: "id_setores", in: "path", required: true, description: "ID do setor", schema: { type: 'integer', example: 1 } }],
-        requestBody: { 
-          required: false, 
-          content: { 
-            "application/json": { schema: { $ref: "#/components/schemas/Atualizar_Parcial_Setor" }, example: { nome: "Novo Nome" } } 
-          } 
+        requestBody: {
+          required: false,
+          content: {
+            "application/json": { schema: { $ref: "#/components/schemas/Atualizar_Parcial_Setor" }, example: { nome: "Novo Nome" } }
+          }
         },
-        responses: { 
-          200: { description: "Setor atualizado com sucesso" }, 
-          404: { description: "Setor não encontrado" }, 
-          500: { description: "Erro ao atualizar setor" } 
+        responses: {
+          200: { description: "Setor atualizado com sucesso" },
+          404: { description: "Setor não encontrado" },
+          500: { description: "Erro ao atualizar setor" }
         }
       },
       delete: {
@@ -205,10 +202,10 @@ const documentacao = {
         security: [{ bearerAuth: [] }],
         description: 'Remove um setor existente pelo ID',
         parameters: [{ name: "id_setores", in: "path", required: true, description: "ID do setor", schema: { type: 'integer', example: 1 } }],
-        responses: { 
-          200: { description: "Setor removido com sucesso!" }, 
-          404: { description: "Setor não encontrado" }, 
-          500: { description: "Erro ao remover setor" } 
+        responses: {
+          200: { description: "Setor removido com sucesso!" },
+          404: { description: "Setor não encontrado" },
+          500: { description: "Erro ao remover setor" }
         }
       }
     },
@@ -218,7 +215,7 @@ const documentacao = {
         summary: "Listar todos os treinamentos",
         description: "Retorna lista de todos os treinamentos cadastrados",
         security: [{ bearerAuth: [] }],
-        responses: { 
+        responses: {
           200: { description: "Dados obtidos com sucesso!", content: { "application/json": { schema: { type: "array", items: { $ref: '#/components/schemas/Listar_Treinamentos' } } } } },
           401: { description: "Não autorizado" },
           500: { description: "Erro ao listar treinamentos" }
@@ -229,15 +226,15 @@ const documentacao = {
         summary: 'Cadastrar novo treinamento',
         description: "Cria um novo treinamento associado a um setor",
         security: [{ bearerAuth: [] }],
-        requestBody: { 
-          required: true, 
-          content: { 
-            "application/json": { schema: { $ref: "#/components/schemas/Cadastrar_Treinamento" } } 
-          } 
+        requestBody: {
+          required: true,
+          content: {
+            "application/json": { schema: { $ref: "#/components/schemas/Cadastrar_Treinamento" } }
+          }
         },
-        responses: { 
-          201: { description: "Treinamento cadastrado com sucesso!" }, 
-          500: { description: "Erro ao cadastrar treinamento" } 
+        responses: {
+          201: { description: "Treinamento cadastrado com sucesso!" },
+          500: { description: "Erro ao cadastrar treinamento" }
         }
       }
     },
@@ -248,16 +245,16 @@ const documentacao = {
         description: 'Atualiza todos os dados de um treinamento (PUT - requer todos os campos)',
         security: [{ bearerAuth: [] }],
         parameters: [{ name: "id_treinamento", in: "path", required: true, description: "ID do treinamento", schema: { type: 'integer', example: 1 } }],
-        requestBody: { 
-          required: true, 
-          content: { 
-            "application/json": { schema: { $ref: "#/components/schemas/Atualizar_Treinamento" } } 
-          } 
+        requestBody: {
+          required: true,
+          content: {
+            "application/json": { schema: { $ref: "#/components/schemas/Atualizar_Treinamento" } }
+          }
         },
-        responses: { 
-          200: { description: "Treinamento atualizado com sucesso!" }, 
-          404: { description: "Treinamento não encontrado" }, 
-          500: { description: "Erro ao atualizar treinamento" } 
+        responses: {
+          200: { description: "Treinamento atualizado com sucesso!" },
+          404: { description: "Treinamento não encontrado" },
+          500: { description: "Erro ao atualizar treinamento" }
         }
       },
       patch: {
@@ -266,16 +263,16 @@ const documentacao = {
         description: 'Atualiza apenas os campos enviados (PATCH - campos opcionais)',
         security: [{ bearerAuth: [] }],
         parameters: [{ name: "id_treinamento", in: "path", required: true, description: "ID do treinamento", schema: { type: 'integer', example: 1 } }],
-        requestBody: { 
-          required: false, 
-          content: { 
-            "application/json": { schema: { $ref: "#/components/schemas/Atualizar_Parcial_Treinamento" }, example: { nome: "Novo Nome" } } 
-          } 
+        requestBody: {
+          required: false,
+          content: {
+            "application/json": { schema: { $ref: "#/components/schemas/Atualizar_Parcial_Treinamento" }, example: { nome: "Novo Nome" } }
+          }
         },
-        responses: { 
-          200: { description: "Treinamento atualizado com sucesso" }, 
-          404: { description: "Treinamento não encontrado" }, 
-          500: { description: "Erro ao atualizar treinamento" } 
+        responses: {
+          200: { description: "Treinamento atualizado com sucesso" },
+          404: { description: "Treinamento não encontrado" },
+          500: { description: "Erro ao atualizar treinamento" }
         }
       },
       delete: {
@@ -284,10 +281,10 @@ const documentacao = {
         description: 'Remove um treinamento existente pelo ID',
         security: [{ bearerAuth: [] }],
         parameters: [{ name: "id_treinamento", in: "path", required: true, description: "ID do treinamento", schema: { type: 'integer', example: 1 } }],
-        responses: { 
-          200: { description: "Treinamento removido com sucesso!" }, 
-          404: { description: "Treinamento não encontrado" }, 
-          500: { description: "Erro ao remover treinamento" } 
+        responses: {
+          200: { description: "Treinamento removido com sucesso!" },
+          404: { description: "Treinamento não encontrado" },
+          500: { description: "Erro ao remover treinamento" }
         }
       }
     },
@@ -297,7 +294,7 @@ const documentacao = {
         summary: "Listar todos os certificados",
         description: "Retorna lista de todos os certificados emitidos",
         security: [{ bearerAuth: [] }],
-        responses: { 
+        responses: {
           200: { description: "Dados obtidos com sucesso!", content: { "application/json": { schema: { type: "array", items: { $ref: '#/components/schemas/Listar_Certificados' } } } } },
           401: { description: "Não autorizado" },
           500: { description: "Erro ao listar certificados" }
@@ -308,15 +305,15 @@ const documentacao = {
         summary: 'Cadastrar novo certificado',
         description: "Cria um novo certificado para um usuário em um treinamento",
         security: [{ bearerAuth: [] }],
-        requestBody: { 
-          required: true, 
-          content: { 
-            "application/json": { schema: { $ref: "#/components/schemas/Cadastrar_Certificado" } } 
-          } 
+        requestBody: {
+          required: true,
+          content: {
+            "application/json": { schema: { $ref: "#/components/schemas/Cadastrar_Certificado" } }
+          }
         },
-        responses: { 
-          201: { description: "Certificado cadastrado com sucesso!" }, 
-          500: { description: "Erro ao cadastrar certificado" } 
+        responses: {
+          201: { description: "Certificado cadastrado com sucesso!" },
+          500: { description: "Erro ao cadastrar certificado" }
         }
       }
     },
@@ -327,16 +324,16 @@ const documentacao = {
         description: 'Atualiza todos os dados de um certificado (PUT - requer todos os campos)',
         security: [{ bearerAuth: [] }],
         parameters: [{ name: "id_certificados", in: "path", required: true, description: "ID do certificado", schema: { type: 'integer', example: 1 } }],
-        requestBody: { 
-          required: true, 
-          content: { 
-            "application/json": { schema: { $ref: "#/components/schemas/Atualizar_Certificado" } } 
-          } 
+        requestBody: {
+          required: true,
+          content: {
+            "application/json": { schema: { $ref: "#/components/schemas/Atualizar_Certificado" } }
+          }
         },
-        responses: { 
-          200: { description: "Certificado atualizado com sucesso!" }, 
-          404: { description: "Certificado não encontrado" }, 
-          500: { description: "Erro ao atualizar certificado" } 
+        responses: {
+          200: { description: "Certificado atualizado com sucesso!" },
+          404: { description: "Certificado não encontrado" },
+          500: { description: "Erro ao atualizar certificado" }
         }
       },
       patch: {
@@ -345,16 +342,16 @@ const documentacao = {
         description: 'Atualiza apenas os campos enviados (PATCH - campos opcionais)',
         security: [{ bearerAuth: [] }],
         parameters: [{ name: "id_certificados", in: "path", required: true, description: "ID do certificado", schema: { type: 'integer', example: 1 } }],
-        requestBody: { 
-          required: false, 
-          content: { 
-            "application/json": { schema: { $ref: "#/components/schemas/Atualizar_Parcial_Certificado" }, example: { valido: "2025-12-31" } } 
-          } 
+        requestBody: {
+          required: false,
+          content: {
+            "application/json": { schema: { $ref: "#/components/schemas/Atualizar_Parcial_Certificado" }, example: { valido: "2025-12-31" } }
+          }
         },
-        responses: { 
-          200: { description: "Certificado atualizado com sucesso" }, 
-          404: { description: "Certificado não encontrado" }, 
-          500: { description: "Erro ao atualizar certificado" } 
+        responses: {
+          200: { description: "Certificado atualizado com sucesso" },
+          404: { description: "Certificado não encontrado" },
+          500: { description: "Erro ao atualizar certificado" }
         }
       },
       delete: {
@@ -363,10 +360,10 @@ const documentacao = {
         description: 'Remove um certificado existente pelo ID',
         security: [{ bearerAuth: [] }],
         parameters: [{ name: "id_certificados", in: "path", required: true, description: "ID do certificado", schema: { type: 'integer', example: 1 } }],
-        responses: { 
-          200: { description: "Certificado removido com sucesso!" }, 
-          404: { description: "Certificado não encontrado" }, 
-          500: { description: "Erro ao remover certificado" } 
+        responses: {
+          200: { description: "Certificado removido com sucesso!" },
+          404: { description: "Certificado não encontrado" },
+          500: { description: "Erro ao remover certificado" }
         }
       }
     },
@@ -379,10 +376,10 @@ const documentacao = {
         responses: {
           200: {
             description: "Dados obtidos com sucesso!",
-            content: { 
-              "application/json": { 
+            content: {
+              "application/json": {
                 schema: { type: "array", items: { $ref: '#/components/schemas/Classificacao_Usuario' } }
-              } 
+              }
             }
           },
           401: { description: "Não autorizado" },
@@ -399,10 +396,10 @@ const documentacao = {
         responses: {
           200: {
             description: "Dados obtidos com sucesso!",
-            content: { 
-              "application/json": { 
+            content: {
+              "application/json": {
                 schema: { $ref: '#/components/schemas/Dashboard' }
-              } 
+              }
             }
           },
           401: { description: "Não autorizado" },
@@ -413,16 +410,16 @@ const documentacao = {
   },
   components: {
     securitySchemes: {
-      bearerAuth: { 
-        type: 'http', 
-        scheme: 'bearer', 
-        bearerFormat: 'JWT', 
-        description: 'Insira o token JWT obtido no login. Exemplo: seu_token_aqui' 
+      bearerAuth: {
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT',
+        description: 'Insira o token JWT obtido no login. Exemplo: seu_token_aqui'
       }
     },
     schemas: {
       Login_Usuario: {
-        type: 'object', 
+        type: 'object',
         required: ['email', 'senha'],
         properties: {
           email: { type: "string", example: "usuario@example.com", description: "Email do usuário" },
@@ -434,21 +431,21 @@ const documentacao = {
         properties: {
           message: { type: 'string', example: 'Login realizado', description: 'Mensagem de sucesso' },
           token: { type: 'string', description: 'Token JWT para autenticação', example: 'eyJhbGciOiJIUzI1Ni...' },
-          usuario: { 
-            type: 'object', 
-            properties: { 
-              id_usuario: { type: "integer", example: 1 }, 
-              nome: { type: "string", example: 'João Silva' }, 
-              email: { type: "string", example: "joao@example.com" } 
-            } 
+          usuario: {
+            type: 'object',
+            properties: {
+              id_usuario: { type: "integer", example: 1 },
+              nome: { type: "string", example: 'João Silva' },
+              email: { type: "string", example: "joao@example.com" }
+            }
           }
         }
       },
       Listar_Usuarios: {
         type: 'object',
-        properties: { 
-          id_usuario: { type: "integer", example: 1, description: "ID único do usuário" }, 
-          nome: { type: "string", example: "Ricardo", description: "Nome do usuário" }, 
+        properties: {
+          id_usuario: { type: "integer", example: 1, description: "ID único do usuário" },
+          nome: { type: "string", example: "Ricardo", description: "Nome do usuário" },
           email: { type: "string", example: "ricardo@email.com", description: "Email do usuário" },
           tipo_usuario: { type: "string", example: "admin", description: "Tipo de usuário (admin, comum)" },
           ativo: { type: "boolean", example: true, description: "Status do usuário" }
@@ -457,34 +454,34 @@ const documentacao = {
       Cadastrar_Usuario: {
         type: 'object',
         required: ["nome", "email", "senha", "tipo_usuario"],
-        properties: { 
-          nome: { type: "string", example: "Ricardo", description: "Nome do usuário" }, 
-          email: { type: "string", example: "ricardo2@email.com", description: "Email único do usuário" }, 
-          senha: { type: "string", example: "Senha123", description: "Senha criptografada" }, 
-          tipo_usuario: { type: 'string', example: 'comum', description: "Tipo de usuário", enum: ['admin', 'comum'] } 
+        properties: {
+          nome: { type: "string", example: "Ricardo", description: "Nome do usuário" },
+          email: { type: "string", example: "ricardo2@email.com", description: "Email único do usuário" },
+          senha: { type: "string", example: "Senha123", description: "Senha criptografada" },
+          tipo_usuario: { type: 'string', example: 'comum', description: "Tipo de usuário", enum: ['admin', 'comum'] }
         }
       },
       Atualizar_Usuario: {
         type: 'object',
         required: ["nome", "email", "senha", "tipo_usuario"],
-        properties: { 
-          nome: { type: "string", example: "Nina", description: "Nome atualizado" }, 
-          email: { type: "string", example: "nina@email.com", description: "Email atualizado" }, 
-          senha: { type: "string", example: "Senha123", description: "Senha atualizada" }, 
-          tipo_usuario: { type: 'string', example: 'admin', description: "Tipo de usuário atualizado" } 
+        properties: {
+          nome: { type: "string", example: "Nina", description: "Nome atualizado" },
+          email: { type: "string", example: "nina@email.com", description: "Email atualizado" },
+          senha: { type: "string", example: "Senha123", description: "Senha atualizada" },
+          tipo_usuario: { type: 'string', example: 'admin', description: "Tipo de usuário atualizado" }
         }
       },
       Atualizar_Parcial_Usuario: {
         type: 'object',
-        properties: { 
-          nome: { type: "string", description: "Nome do usuário (opcional)" }, 
-          email: { type: "string", description: "Email do usuário (opcional)" }, 
-          senha: { type: "string", description: "Senha do usuário (opcional)" }, 
-          tipo_usuario: { type: 'string', description: "Tipo de usuário (opcional)" } 
+        properties: {
+          nome: { type: "string", description: "Nome do usuário (opcional)" },
+          email: { type: "string", description: "Email do usuário (opcional)" },
+          senha: { type: "string", description: "Senha do usuário (opcional)" },
+          tipo_usuario: { type: 'string', description: "Tipo de usuário (opcional)" }
         }
       },
       Listar_Setores: {
-        type: 'object', 
+        type: 'object',
         properties: {
           id_setores: { type: "integer", example: 1, description: "ID único do setor" },
           nome: { type: "string", example: "Recursos Humanos", description: "Nome do setor" },
@@ -519,7 +516,7 @@ const documentacao = {
         }
       },
       Listar_Treinamentos: {
-        type: 'object', 
+        type: 'object',
         properties: {
           id_treinamento: { type: 'integer', example: 1, description: "ID único do treinamento" },
           nome: { type: 'string', example: 'Treinamento Básico', description: "Nome do treinamento" },
@@ -533,10 +530,10 @@ const documentacao = {
         type: 'object',
         required: ["nome", "id_setor"],
         properties: {
-          nome: { type: 'string', example: 'Treinamento Básico', description: "Nome do treinamento" }, 
-          descricao: { type: 'string', example: 'Descrição', description: "Descrição (opcional)" }, 
-          data_criacao: { type: 'string', format: 'date', example: '2024-01-01', description: "Data de criação (opcional)" }, 
-          obrigatorio: { type: 'string', example: 'sim', description: "Obrigatório? (sim/não)" }, 
+          nome: { type: 'string', example: 'Treinamento Básico', description: "Nome do treinamento" },
+          descricao: { type: 'string', example: 'Descrição', description: "Descrição (opcional)" },
+          data_criacao: { type: 'string', format: 'date', example: '2024-01-01', description: "Data de criação (opcional)" },
+          obrigatorio: { type: 'string', example: 'sim', description: "Obrigatório? (sim/não)" },
           id_setor: { type: 'integer', example: 1, description: "ID do setor associado" }
         }
       },
@@ -544,32 +541,32 @@ const documentacao = {
         type: 'object',
         required: ["nome", "descricao", "data_criacao", "obrigatorio", "id_setor"],
         properties: {
-          nome: { type: 'string', description: "Nome do treinamento" }, 
+          nome: { type: 'string', description: "Nome do treinamento" },
           descricao: { type: 'string', description: "Descrição do treinamento" },
-          data_criacao: { type: 'string', format: 'date', description: "Data de criação" }, 
-          obrigatorio: { type: 'string', description: "Obrigatório?" }, 
+          data_criacao: { type: 'string', format: 'date', description: "Data de criação" },
+          obrigatorio: { type: 'string', description: "Obrigatório?" },
           id_setor: { type: 'integer', description: "ID do setor" }
         }
       },
       Atualizar_Parcial_Treinamento: {
         type: 'object',
         properties: {
-          nome: { type: 'string', description: "Nome do treinamento (opcional)" }, 
+          nome: { type: 'string', description: "Nome do treinamento (opcional)" },
           descricao: { type: 'string', description: "Descrição (opcional)" },
-          data_criacao: { type: 'string', format: 'date', description: "Data de criação (opcional)" }, 
-          obrigatorio: { type: 'string', description: "Obrigatório? (opcional)" }, 
+          data_criacao: { type: 'string', format: 'date', description: "Data de criação (opcional)" },
+          obrigatorio: { type: 'string', description: "Obrigatório? (opcional)" },
           id_setor: { type: 'integer', description: "ID do setor (opcional)" }
         }
       },
       Listar_Certificados: {
-        type: 'object', 
+        type: 'object',
         properties: {
           id_certificados: { type: 'integer', example: 1, description: "ID único do certificado" },
-          nome: { type: 'string', example: 'Certificado XYZ', description: "Nome do certificado" }, 
+          nome: { type: 'string', example: 'Certificado XYZ', description: "Nome do certificado" },
           tipo: { type: 'string', example: 'P', description: "Tipo de certificado" },
-          arquivo_url: { type: 'string', example: 'http://example.com/cert.pdf', description: "URL do arquivo" }, 
+          arquivo_url: { type: 'string', example: 'http://example.com/cert.pdf', description: "URL do arquivo" },
           data_emissao: { type: 'string', format: 'date', example: '2024-06-01', description: "Data de emissão" },
-          valido: { type: 'string', format: 'date', example: '2025-06-01', description: "Data de validade" }, 
+          valido: { type: 'string', format: 'date', example: '2025-06-01', description: "Data de validade" },
           id_usuario: { type: 'integer', example: 1, description: "ID do usuário" },
           id_treinamento: { type: 'integer', example: 1, description: "ID do treinamento" }
         }
@@ -578,11 +575,11 @@ const documentacao = {
         type: 'object',
         required: ["nome", "id_usuario", "id_treinamento"],
         properties: {
-          nome: { type: 'string', example: 'Certificado XYZ', description: "Nome do certificado" }, 
+          nome: { type: 'string', example: 'Certificado XYZ', description: "Nome do certificado" },
           tipo: { type: 'string', example: 'P', description: "Tipo (opcional)" },
-          arquivo_url: { type: 'string', example: 'http://example.com/cert.pdf', description: "URL do arquivo (opcional)" }, 
+          arquivo_url: { type: 'string', example: 'http://example.com/cert.pdf', description: "URL do arquivo (opcional)" },
           data_emissao: { type: 'string', format: 'date', example: '2024-06-01', description: "Data de emissão (opcional)" },
-          valido: { type: 'string', format: 'date', example: '2025-06-01', description: "Data de validade (opcional)" }, 
+          valido: { type: 'string', format: 'date', example: '2025-06-01', description: "Data de validade (opcional)" },
           id_usuario: { type: 'integer', example: 1, description: "ID do usuário" },
           id_treinamento: { type: 'integer', example: 1, description: "ID do treinamento" }
         }
@@ -591,29 +588,29 @@ const documentacao = {
         type: 'object',
         required: ["nome", "tipo", "arquivo_url", "data_emissao", "valido", "id_usuario", "id_treinamento"],
         properties: {
-          nome: { type: 'string', description: "Nome do certificado" }, 
+          nome: { type: 'string', description: "Nome do certificado" },
           tipo: { type: 'string', description: "Tipo" },
-          arquivo_url: { type: 'string', description: "URL do arquivo" }, 
+          arquivo_url: { type: 'string', description: "URL do arquivo" },
           data_emissao: { type: 'string', format: 'date', description: "Data de emissão" },
-          valido: { type: 'string', format: 'date', description: "Data de validade" }, 
-          id_usuario: { type: 'integer', description: "ID do usuário" }, 
+          valido: { type: 'string', format: 'date', description: "Data de validade" },
+          id_usuario: { type: 'integer', description: "ID do usuário" },
           id_treinamento: { type: 'integer', description: "ID do treinamento" }
         }
       },
       Atualizar_Parcial_Certificado: {
         type: 'object',
         properties: {
-          nome: { type: 'string', description: "Nome do certificado (opcional)" }, 
+          nome: { type: 'string', description: "Nome do certificado (opcional)" },
           tipo: { type: 'string', description: "Tipo (opcional)" },
-          arquivo_url: { type: 'string', description: "URL do arquivo (opcional)" }, 
+          arquivo_url: { type: 'string', description: "URL do arquivo (opcional)" },
           data_emissao: { type: 'string', format: 'date', description: "Data de emissão (opcional)" },
-          valido: { type: 'string', format: 'date', description: "Data de validade (opcional)" }, 
-          id_usuario: { type: 'integer', description: "ID do usuário (opcional)" }, 
+          valido: { type: 'string', format: 'date', description: "Data de validade (opcional)" },
+          id_usuario: { type: 'integer', description: "ID do usuário (opcional)" },
           id_treinamento: { type: 'integer', description: "ID do treinamento (opcional)" }
         }
       },
       Classificacao_Usuario: {
-        type: 'object', 
+        type: 'object',
         properties: {
           id_usuario: { type: 'integer', example: 1, description: "ID do usuário" },
           nome_usuario: { type: 'string', example: 'João Silva', description: "Nome do usuário" },
@@ -621,7 +618,7 @@ const documentacao = {
         }
       },
       Dashboard: {
-        type: 'object', 
+        type: 'object',
         properties: {
           totalUsuarios: { type: 'integer', example: 10, description: "Total de usuários ativos" },
           totalSetores: { type: 'integer', example: 5, description: "Total de setores" },

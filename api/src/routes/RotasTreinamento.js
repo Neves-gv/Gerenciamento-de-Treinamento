@@ -19,6 +19,19 @@ router.get('/treinamentos', autenticarToken, async (req, res) => {
 router.post('/treinamentos', autenticarToken, async (req, res) => {
     const { nome, descricao, data_criacao, obrigatorio, id_setor } = req.body;
     try {
+        if (!nome || id_setor === undefined) {
+            return res.status(400).json({ error: 'Nome e id_setor são obrigatórios' });
+        }
+        // Validar se setor existe
+        const verificarSetor = await BD.query(
+            `SELECT * FROM setores WHERE id_setores = $1`,
+            [id_setor]
+        );
+        
+        if (verificarSetor.rows.length === 0) {
+            return res.status(400).json({ error: 'Setor não encontrado. Verifique o id_setor informado' });
+        }
+
         const comando = `INSERT INTO treinamento(nome, descricao, data_criacao, obrigatorio, id_setor) VALUES($1, $2, $3, $4, $5)`;
         const valores = [nome, descricao, data_criacao, obrigatorio, id_setor];
         await BD.query(comando, valores);
@@ -39,6 +52,16 @@ router.put('/treinamentos/:id_treinamento', autenticarToken, async (req, res) =>
             return res.status(404).json({ message: 'Treinamento não encontrado' })
         }
 
+        // Validar se novo setor existe
+        if (id_setor === undefined) {
+            return res.status(400).json({ error: 'id_setor é obrigatório' });
+        }
+
+        const verificarSetor = await BD.query(`SELECT * FROM setores WHERE id_setores = $1`, [id_setor]);
+        if (verificarSetor.rows.length === 0) {
+            return res.status(400).json({ error: 'Setor não encontrado. Verifique o id_setor informado' });
+        }
+
         const comando = `UPDATE treinamento SET nome = $1, descricao = $2, data_criacao = $3, obrigatorio = $4, id_setor = $5 WHERE id_treinamento = $6`;
         const valores = [nome, descricao, data_criacao, obrigatorio, id_setor, id_treinamento];
         await BD.query(comando, valores);
@@ -57,6 +80,14 @@ router.patch('/treinamentos/:id_treinamento', autenticarToken, async (req, res) 
         const verificar = await BD.query(`SELECT * FROM treinamento WHERE id_treinamento = $1`, [id_treinamento]);
         if (verificar.rows.length === 0) {
             return res.status(404).json({ message: 'Treinamento não encontrado' });
+        }
+
+        // Validar setor se estiver sendo atualizado
+        if (id_setor !== undefined) {
+            const verificarSetor = await BD.query(`SELECT * FROM setores WHERE id_setores = $1`, [id_setor]);
+            if (verificarSetor.rows.length === 0) {
+                return res.status(400).json({ error: 'Setor não encontrado. Verifique o id_setor informado' });
+            }
         }
 
         const campos = [];
