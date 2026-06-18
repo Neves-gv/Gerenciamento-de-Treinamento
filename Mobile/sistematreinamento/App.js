@@ -13,6 +13,8 @@ export default function App() {
         options={{headerShown: false}}/>
         <Stack.Screen name="MenuDrawer" component={MenuDrawer} 
         options={{ headerShown: false }} />
+        <Stack.Screen name="Principal" component={Principal} 
+        options={{ headerShown: false }} />
       </Stack.Navigator>
           </NavigationContainer>
   );
