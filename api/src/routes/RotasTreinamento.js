@@ -11,7 +11,7 @@ router.get('/treinamentos', autenticarToken, async (req, res) => {
         return res.status(200).json(treinamentos.rows);
     } catch (error) {
         console.error('Erro ao listar treinamentos', error.message);
-        return res.status(500).json({ error: 'Erro ao listar treinamentos' })
+        return res.status(500).json({ error: 'Erro ao listar treinamentos', "error.message": error.message })
     }
 });
 
@@ -38,7 +38,7 @@ router.post('/treinamentos', autenticarToken, async (req, res) => {
         return res.status(201).json('Treinamento cadastrado.');
     } catch (error) {
         console.error('Erro ao cadastrar treinamento', error.message);
-        return res.status(500).json({ error: 'Erro ao cadastrar treinamento' })
+        return res.status(500).json({ error: 'Erro ao cadastrar treinamento', "error.message": error.message })
     }
 });
 
@@ -68,7 +68,7 @@ router.put('/treinamentos/:id_treinamento', autenticarToken, async (req, res) =>
         return res.status(200).json('Treinamento atualizado.');
     } catch (error) {
         console.error('Erro ao atualizar treinamento', error.message);
-        return res.status(500).json({ error: 'Erro ao atualizar treinamento' })
+        return res.status(500).json({ error: 'Erro ao atualizar treinamento', "error.message": error.message })
     }
 });
 
@@ -110,7 +110,7 @@ router.patch('/treinamentos/:id_treinamento', autenticarToken, async (req, res) 
         return res.status(200).json('Treinamento atualizado com sucesso');
     } catch (error) {
         console.error('Erro ao atualizar treinamento', error.message);
-        return res.status(500).json({ message: 'Erro interno do servidor: ' + error.message })
+        return res.status(500).json({ message: 'Erro interno do servidor: ' + error.message, "error.message": error.message })
     }
 });
 
@@ -123,7 +123,7 @@ router.delete('/treinamentos/:id_treinamento', autenticarToken, async (req, res)
         return res.status(200).json({ message: 'Treinamento removido com sucesso' });
     } catch (error) {
         console.error('Erro ao remover treinamento', error.message);
-        return res.status(500).json({ message: 'Erro interno do servidor: ' + error.message })
+        return res.status(500).json({ message: 'Erro interno do servidor: ' + error.message, "error.message": error.message })
     }
 });
 

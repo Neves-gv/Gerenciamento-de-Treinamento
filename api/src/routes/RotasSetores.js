@@ -11,7 +11,7 @@ router.get('/setores', autenticarToken, async (req, res) => {
         return res.status(200).json(setores.rows);
     } catch (error) {
         console.error('Erro ao listar setores', error.message);
-        return res.status(500).json({ error: 'Erro ao listar setores' })
+        return res.status(500).json({ error: 'Erro ao listar setores', "error.message": error.message })
     }
 });
 
@@ -25,7 +25,7 @@ router.post('/setores', autenticarToken, async (req, res) => {
         return res.status(201).json('Setor cadastrado.');
     } catch (error) {
         console.error('Erro ao cadastrar setor', error.message);
-        return res.status(500).json({ error: 'Erro ao cadastrar setor' })
+        return res.status(500).json({ error: 'Erro ao cadastrar setor', "error.message": error.message })
     }
 });
 
@@ -45,7 +45,7 @@ router.put('/setores/:id_setores', autenticarToken, async (req, res) => {
         return res.status(200).json('Setor atualizado.');
     } catch (error) {
         console.error('Erro ao atualizar setor', error.message);
-        return res.status(500).json({ error: 'Erro ao atualizar setor' })
+        return res.status(500).json({ error: 'Erro ao atualizar setor', "error.message": error.message })
     }
 });
 
@@ -77,7 +77,7 @@ router.patch('/setores/:id_setores', autenticarToken, async (req, res) => {
         return res.status(200).json('Setor atualizado com sucesso');
     } catch (error) {
         console.error('Erro ao atualizar setor', error.message);
-        return res.status(500).json({ message: 'Erro interno do servidor: ' + error.message })
+        return res.status(500).json({ message: 'Erro interno do servidor: ' + error.message, "error.message": error.message })
     }
 });
 
@@ -90,7 +90,7 @@ router.delete('/setores/:id_setores', autenticarToken, async (req, res) => {
         return res.status(200).json({ message: 'Setor removido com sucesso' });
     } catch (error) {
         console.error('Erro ao remover setor', error.message);
-        return res.status(500).json({ message: 'Erro interno do servidor: ' + error.message })
+        return res.status(500).json({ message: 'Erro interno do servidor: ' + error.message, "error.message": error.message })
     }
 });
 

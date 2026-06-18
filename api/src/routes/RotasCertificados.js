@@ -11,7 +11,7 @@ router.get('/certificados', autenticarToken, async (req, res) => {
         return res.status(200).json(certificados.rows);
     } catch (error) {
         console.error('Erro ao listar certificados', error.message);
-        return res.status(500).json({ error: 'Erro ao listar certificados' })
+        return res.status(500).json({ error: 'Erro ao listar certificados', "error.message": error.message })
     }
 });
 
@@ -48,7 +48,7 @@ router.post('/certificados', autenticarToken, async (req, res) => {
         return res.status(201).json('Certificado cadastrado.');
     } catch (error) {
         console.error('Erro ao cadastrar certificado', error.message);
-        return res.status(500).json({ error: 'Erro ao cadastrar certificado' })
+        return res.status(500).json({ error: 'Erro ao cadastrar certificado', "error.message": error.message })
     }
 });
 
@@ -135,7 +135,7 @@ router.patch('/certificados/:id_certificados', autenticarToken, async (req, res)
         return res.status(200).json('Certificado atualizado com sucesso');
     } catch (error) {
         console.error('Erro ao atualizar certificado', error.message);
-        return res.status(500).json({ message: 'Erro interno do servidor: ' + error.message })
+        return res.status(500).json({ message: 'Erro interno do servidor: ' + error.message, "error.message": error.message })
     }
 });
 
@@ -148,7 +148,7 @@ router.delete('/certificados/:id_certificados', autenticarToken, async (req, res
         return res.status(200).json({ message: 'Certificado removido com sucesso' });
     } catch (error) {
         console.error('Erro ao remover certificado', error.message);
-        return res.status(500).json({ message: 'Erro interno do servidor: ' + error.message })
+        return res.status(500).json({ message: 'Erro interno do servidor: ' + error.message, "error.message": error.message })
     }
 });
 

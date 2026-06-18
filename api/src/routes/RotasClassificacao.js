@@ -22,7 +22,7 @@ router.get('/classificacao', autenticarToken, async (req, res) => {
         return res.status(200).json(resultado.rows);
 
     } catch (error) {
-        return res.status(500).json({ error: 'Erro interno no servidor' });
+        return res.status(500).json({ error: 'Erro interno no servidor', "error.message": error.message });
     }
 });
 

@@ -68,7 +68,7 @@ router.get('/dashboard', autenticarToken, async (req, res) => {
     return res.status(200).json(dados);
   } catch (error) {
     console.error('Erro dashboard:', error.message);
-    return res.status(500).json({ error: error.message });
+    return res.status(500).json({ error: error.message, "error.message": error.message });
   }
 });
 

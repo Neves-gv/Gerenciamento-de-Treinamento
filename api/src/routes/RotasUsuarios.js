@@ -14,7 +14,7 @@ router.get('/usuarios', autenticarToken, async (req, res) => {
         return res.status(200).json(usuarios.rows);
     } catch (error) {
         console.error('Erro ao listar usuários', error.message);
-        return res.status(500).json({ error: 'Erro ao listar usuarios' })
+        return res.status(500).json({ error: 'Erro ao listar usuarios', "error.message": error.message })
     }
 });
 // ================= CADASTRAR USUÁRIO =================
@@ -44,7 +44,7 @@ router.post('/usuarios',  async (req, res) => {
         return res.status(201).json("Usuário cadastrado.");
     } catch (error) {
         console.error('Erro ao cadastrar usuários', error.message);
-        return res.status(500).json({ error: 'Erro ao cadastrar usuarios' })
+        return res.status(500).json({ error: 'Erro ao cadastrar usuarios', "error.message": error.message })
     }
 });
 // ================= ATUALIZAR USUÁRIO  =================
@@ -71,7 +71,7 @@ router.put('/usuarios/:id_usuario', autenticarToken, async (req, res) => {
         return res.status(200).json('Usuario foi atualizado!');
     } catch (error) {
         console.error('Erro ao atualizar usuários', error.message);
-        return res.status(500).json({ error: 'Erro ao atualizar usuarios' })
+        return res.status(500).json({ error: 'Erro ao atualizar usuarios', "error.message": error.message })
     }
 });
 // ================= PATCH =================
@@ -110,7 +110,7 @@ router.patch('/usuarios/:id_usuario', autenticarToken, async (req, res) => {
         return res.status(200).json('Usuário atualizado com sucesso');
     } catch (error) {
         console.error('Erro ao atualizar usuario', error.message)
-        return res.status(500).json({ message: "Erro interno do servidor: " + error.message })
+        return res.status(500).json({ message: "Erro interno do servidor: " + error.message, "error.message": error.message })
     }
 });
 // ================= DELETE =================
@@ -122,7 +122,7 @@ router.delete('/usuarios/:id_usuario', autenticarToken, async (req, res) => {
         return res.status(200).json({ message: "Usuario removido com sucesso" });
     } catch (error) {
         console.error('Erro ao remover usuario', error.message)
-        return res.status(500).json({ message: "Erro interno do servidor: " + error.message })
+        return res.status(500).json({ message: "Erro interno do servidor: " + error.message, "error.message": error.message })
     }
 });
 // ================= LOGIN =================
@@ -160,7 +160,7 @@ router.post('/login', async (req, res) => {
         });
     } catch (error) {
         console.error('Erro ao realizar login', error.message)
-        return res.status(500).json({ message: "Erro interno do servidor: " + error.message })
+        return res.status(500).json({ message: "Erro interno do servidor: " + error.message, "error.message": error.message })
     }
 });
 

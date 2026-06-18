@@ -24,62 +24,57 @@ export const EstilosLogin = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 20,
-    paddingVertical: 20
-  },
-  containerTeclado: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingHorizontal: 20,
-    paddingVertical: 20
+    paddingVertical: 20,
   },
   cabecalho: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 30
+    marginBottom: 30,
   },
   iconeLogo: {
     width: 50,
     height: 50,
-    marginRight: 15
+    marginRight: 15,
+    resizeMode: 'contain',
   },
   nomeApp: {
     margin: 0,
-    fontSize: 29,
+    fontSize: 28,
     fontWeight: 'bold',
-    color: corTextoClaro
+    color: corTextoClaro,
   },
   subtituloApp: {
-    marginTop: 2,
+    marginTop: 4,
     fontSize: 14,
     fontWeight: '300',
-    color: corTextoClaro
+    color: corTextoClaro,
   },
   conteudoPrincipal: {
     width: '100%',
-    maxWidth: 400,
-    alignItems: 'center'
+    maxWidth: 420,
+    alignItems: 'center',
   },
   formularioLogin: {
     backgroundColor: corCard,
     paddingVertical: 30,
     paddingHorizontal: 25,
-    borderRadius: 15,
+    borderRadius: 18,
     width: '100%',
     alignItems: 'center',
     marginBottom: 30,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 10,
-    elevation: 6
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.25,
+    shadowRadius: 16,
+    elevation: 10,
   },
   titulo: {
+    width: '100%',
     fontSize: 24,
     marginBottom: 25,
     color: corTextoClaro,
-    fontWeight: '600',
-    textAlign: 'center'
+    fontWeight: '700',
+    textAlign: 'left',
   },
   grupoInput: {
     position: 'relative',
@@ -87,72 +82,72 @@ export const EstilosLogin = StyleSheet.create({
     marginBottom: 20,
     justifyContent: 'center',
     backgroundColor: corFundoInput,
-    borderRadius: 8,
+    borderRadius: 10,
     borderWidth: 1,
-    borderColor: corBordaInput
+    borderColor: corBordaInput,
   },
   iconeInput: {
     position: 'absolute',
     left: 12,
-    color: corTextoMutado
+    color: corTextoMutado,
   },
   input: {
     width: '100%',
-    paddingVertical: 12,
-    paddingLeft: 40,
-    paddingRight: 42,
-    borderRadius: 8,
+    paddingVertical: 14,
+    paddingLeft: 42,
+    paddingRight: 46,
+    borderRadius: 10,
     fontSize: 16,
-    color: corTextoClaro
+    color: corTextoClaro,
   },
   alternarVisibilidade: {
     position: 'absolute',
     right: 10,
-    padding: 5
+    padding: 6,
   },
   entreOpcoes: {
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   containerCheckbox: {
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   rotuloCheckbox: {
     color: corTextoClaro,
     fontSize: 14,
-    marginLeft: 6
+    marginLeft: 8,
   },
   esqueceuSenha: {
     fontSize: 14,
-    color: corTextoClaro,
-    fontWeight: '500'
+    color: corAzulPrincipal,
+    fontWeight: '500',
   },
   mensagemFeedback: {
     width: '100%',
     minHeight: 22,
     marginTop: 14,
-    color: '#ff4d4d',
+    color: '#ff6b6b',
     fontSize: 14,
     fontWeight: '500',
-    textAlign: 'center'
+    textAlign: 'center',
   },
   botaoEntrar: {
     width: '100%',
-    paddingVertical: 12,
-    borderRadius: 8,
+    paddingVertical: 14,
+    borderRadius: 12,
     marginTop: 20,
     marginBottom: 20,
     alignItems: 'center',
-    backgroundColor: corAzulPrincipal
+    backgroundColor: corAzulPrincipal,
   },
-  textoBotaoEntrar: {
+  textoBotao: {
     color: corTextoClaro,
     fontSize: 18,
-    fontWeight: 'bold'
-  }
+    fontWeight: '700',
+  },
 });
 
 export default EstilosLogin;

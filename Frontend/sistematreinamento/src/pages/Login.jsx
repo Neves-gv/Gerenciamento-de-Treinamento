@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 // `api.js` removed — using inline fetch to backend (VITE_API_URL) instead
 import { useNavigate } from 'react-router-dom'
 import EstilosLogin, { coresLogin } from '../styles/EstilosLogin'
@@ -11,7 +11,24 @@ export default function Login(){
   const [mensagem, setMensagem] = useState('')
   const [mostrarSenha, setMostrarSenha] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [lembrar, setLembrar] = useState(false)
   const navigate = useNavigate()
+
+  useEffect(() => {
+    const buscarUsuario = () => {
+      const usuarioLogado = localStorage.getItem('UsuarioLogado')
+      if (!usuarioLogado) return
+      try {
+        const usuario = JSON.parse(usuarioLogado)
+        if (usuario?.lembrar === true) {
+          navigate('/principal')
+        }
+      } catch (error) {
+        console.error('Erro ao ler usuário logado:', error)
+      }
+    }
+    buscarUsuario()
+  }, [navigate])
 
   async function botaoEntrar(e){
     e && e.preventDefault()
@@ -44,8 +61,9 @@ export default function Login(){
 
       if (respostaFetch.ok) {
         if (dados?.token) localStorage.setItem('token', dados.token)
-        localStorage.setItem('UsuarioLogado', JSON.stringify(dados?.usuario || dados))
-        navigate('/Principal')
+        const usuarioArmazenado = { ...(dados?.usuario || dados), lembrar }
+        localStorage.setItem('UsuarioLogado', JSON.stringify(usuarioArmazenado))
+        navigate('/principal')
       } else {
         setMensagem(dados?.message || 'Email ou senha incorretos')
       }
@@ -101,7 +119,7 @@ export default function Login(){
 
               <div style={EstilosLogin.entreOpcoes}>
                 <div style={EstilosLogin.containerCheckbox}>
-                  <input type='checkbox' />
+                  <input type='checkbox' checked={lembrar} onChange={e=>setLembrar(e.target.checked)} />
                   <span style={EstilosLogin.rotuloCheckbox}>Lembrar-me</span>
                 </div>
                 <div style={EstilosLogin.esqueceuSenha}>Esqueceu sua senha?</div>
