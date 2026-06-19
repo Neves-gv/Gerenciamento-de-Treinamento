@@ -81,15 +81,15 @@ export default function Login(){
       <div style={{...EstilosLogin.gradiente, background: gradiente}}>
         <div style={{width:'100%',display:'flex',flexDirection:'column',alignItems:'center'}}>
           <div style={EstilosLogin.cabecalho}>
-            <img src={logo} alt="Logo" style={EstilosLogin.iconeLogo} />
-            <div>
               <h1 style={EstilosLogin.nomeApp}>Gerenciamento de Treinamento</h1>
               <p style={EstilosLogin.subtituloApp}>Controle de Treinamento</p>
-            </div>
           </div>
 
           <div style={EstilosLogin.conteudoPrincipal}>
             <div style={EstilosLogin.formularioLogin}>
+              <div style={EstilosLogin.logoTopo}>
+                <img src={logo} alt="Logo" style={EstilosLogin.iconeLogo} />
+              </div>
               <div style={EstilosLogin.titulo}>Acessar sua conta</div>
 
               <div style={EstilosLogin.grupoInput}>

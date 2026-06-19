@@ -43,17 +43,15 @@ export default function Principal({ navigation }) {
   return (
     <View style={EstilosPrincipal.container}>
       <View style={EstilosPrincipal.painel}>
-        <View style={EstilosPrincipal.header}>
-          <TouchableOpacity style={EstilosPrincipal.logoutButton} onPress={botaoLogout}>
-            <Text style={EstilosPrincipal.logoutButtonText}>Sair</Text>
-          </TouchableOpacity>
-        </View>
         <Image source={require('../assets/logo.png')} style={EstilosPrincipal.iconeLogo} />
         <Text style={EstilosPrincipal.titulo}>Gerenciamento de Treinamento</Text>
         <Text style={EstilosPrincipal.subtitulo}>Bem-vindo ao painel principal</Text>
         <View style={EstilosPrincipal.saudacaoCard}>
           <Text style={EstilosPrincipal.saudacaoTitulo}>{saudacao}</Text>
         </View>
+        <TouchableOpacity style={EstilosPrincipal.logoutButton} onPress={botaoLogout}>
+          <Text style={EstilosPrincipal.logoutButtonText}>Sair</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );

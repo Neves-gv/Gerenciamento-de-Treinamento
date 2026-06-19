@@ -30,14 +30,25 @@ export const EstilosLogin = {
   },
   cabecalho: {
     display: 'flex',
+    flexDirection: 'column',
     alignItems: 'center',
+    textAlign: 'center',
     marginBottom: 30
   },
   iconeLogo: {
-    width: 50,
-    height: 50,
-    marginRight: 15,
+    width: 180,
+    height: 'auto',
     objectFit: 'contain'
+  },
+  logoTopo: {
+    position: 'absolute',
+    top: -55,
+    left: '50%',
+    transform: 'translateX(-50%)',
+    width: 210,
+    display: 'flex',
+    justifyContent: 'center',
+    zIndex: 2
   },
   nomeApp: {
     margin: 0,
@@ -58,8 +69,9 @@ export const EstilosLogin = {
     justifyContent: 'center'
   },
   formularioLogin: {
+    position: 'relative',
     backgroundColor: corCard,
-    paddingTop: 30,
+    paddingTop: 80,
     paddingBottom: 30,
     paddingLeft: 25,
     paddingRight: 25,

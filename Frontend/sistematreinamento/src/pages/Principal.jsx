@@ -33,12 +33,6 @@ export default function Principal() {
   return (
     <div style={EstilosPrincipal.container}>
       <div style={EstilosPrincipal.painel}>
-        <div style={EstilosPrincipal.headerPanel}>
-          <button onClick={botaoLogout} style={EstilosPrincipal.link}>
-            Sair
-          </button>
-        </div>
-
         <img src={logo} alt="Logo" style={EstilosPrincipal.iconeLogo} />
         <div style={EstilosPrincipal.saudacaoCard}>
           <h1 style={EstilosPrincipal.titulo}>Gerenciamento de Treinamento</h1>
@@ -47,6 +41,10 @@ export default function Principal() {
             <h2 style={EstilosPrincipal.saudacaoTitulo}>Acompanhe seus treinamentos</h2>
           </div>
         </div>
+
+        <button onClick={botaoLogout} style={EstilosPrincipal.botaoSair}>
+          Sair
+        </button>
       </div>
     </div>
   );

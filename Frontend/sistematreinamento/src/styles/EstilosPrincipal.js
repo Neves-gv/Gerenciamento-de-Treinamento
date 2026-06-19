@@ -20,6 +20,7 @@ export const EstilosPrincipal = {
     boxShadow: '0 18px 48px rgba(0, 0, 0, 0.35)',
     display: 'flex',
     flexDirection: 'column',
+    alignItems: 'center',
     gap: '28px',
   },
   headerPanel: {
@@ -69,15 +70,15 @@ export const EstilosPrincipal = {
     padding: '16px',
   },
   titulo: {
-    fontSize: '2.4rem',
+    fontSize: '2.2rem',
     fontWeight: 700,
-    margin: 0,
+    margin: '0 0 10px',
     letterSpacing: '0.03em',
   },
   subtitulo: {
     fontSize: '1rem',
     color: corTextoMutado,
-    margin: 0,
+    margin: '0 auto 12px',
     maxWidth: '520px',
     lineHeight: 1.7,
   },
@@ -90,8 +91,8 @@ export const EstilosPrincipal = {
     textAlign: 'center',
   },
   saudacaoTitulo: {
-    margin: 0,
-    fontSize: '1.6rem',
+    margin: '0 0 12px',
+    fontSize: '1.8rem',
     color: corTextoClaro,
     fontWeight: 700,
   },
@@ -100,6 +101,18 @@ export const EstilosPrincipal = {
     fontSize: '1rem',
     color: corTextoMutado,
     lineHeight: 1.7,
+  },
+  botaoSair: {
+    width: '100%',
+    padding: '14px 18px',
+    marginTop: '20px',
+    borderRadius: '14px',
+    border: 'none',
+    backgroundColor: 'rgba(255,255,255,0.08)',
+    color: corTextoClaro,
+    cursor: 'pointer',
+    fontWeight: 700,
+    transition: 'background-color 0.2s ease',
   },
 };
 
