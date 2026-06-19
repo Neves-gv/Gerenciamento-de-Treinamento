@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import logo from '../assets/logo.png';
-import { EstilosPrincipal } from '../styles/EstilosPrincipal.js';
+import { EstilosPrincipal } from '../styles/EstilosPrincipal.jsx';
 
 export default function Principal() {
   const [dadosLogin, setDadosLogin] = useState(null);

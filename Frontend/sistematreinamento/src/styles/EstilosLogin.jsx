@@ -11,22 +11,35 @@ import {
 
 export const EstilosLogin = {
   container: {
+    width: '100vw',
     minHeight: '100vh',
-    backgroundColor: corFundoEscuro,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 20
+    padding: 0,
+    margin: 0
   },
   gradiente: {
     width: '100%',
-    maxWidth: 980,
-    borderRadius: 12,
-    padding: 20,
+    maxWidth: 520,
+    minHeight: '100vh',
+    borderRadius: 0,
+    padding: 0,
     boxSizing: 'border-box',
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    margin: '0 auto',
+    background: 'transparent'
+  },
+  conteudoWrapper: {
+    width: '100%',
+    maxWidth: 520,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 20
   },
   cabecalho: {
     display: 'flex',
@@ -64,7 +77,6 @@ export const EstilosLogin = {
   },
   conteudoPrincipal: {
     width: '100%',
-    maxWidth: 420,
     display: 'flex',
     justifyContent: 'center'
   },
@@ -77,9 +89,10 @@ export const EstilosLogin = {
     paddingRight: 25,
     borderRadius: 15,
     width: '100%',
+    maxWidth: 420,
     boxSizing: 'border-box',
     alignItems: 'center',
-    marginBottom: 30,
+    margin: '0 auto',
     boxShadow: '0 8px 24px rgba(0,0,0,0.4)'
   },
   titulo: {

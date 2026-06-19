@@ -77,12 +77,12 @@ export default function Login(){
   const gradiente = `linear-gradient(180deg, ${coresLogin.gradienteFundo.join(',')})`
 
   return (
-    <div style={EstilosLogin.container}>
-      <div style={{...EstilosLogin.gradiente, background: gradiente}}>
-        <div style={{width:'100%',display:'flex',flexDirection:'column',alignItems:'center'}}>
+    <div style={{ ...EstilosLogin.container, background: gradiente }}>
+      <div style={EstilosLogin.gradiente}>
+        <div style={EstilosLogin.conteudoWrapper}>
           <div style={EstilosLogin.cabecalho}>
-              <h1 style={EstilosLogin.nomeApp}>Gerenciamento de Treinamento</h1>
-              <p style={EstilosLogin.subtituloApp}>Controle de Treinamento</p>
+            <h1 style={EstilosLogin.nomeApp}>Gerenciamento de Treinamento</h1>
+            <p style={EstilosLogin.subtituloApp}>Controle de Treinamento</p>
           </div>
 
           <div style={EstilosLogin.conteudoPrincipal}>
