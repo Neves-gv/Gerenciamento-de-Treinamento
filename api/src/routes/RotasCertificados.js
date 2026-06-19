@@ -20,7 +20,7 @@ router.post('/certificados', autenticarToken, async (req, res) => {
     const { nome, tipo, arquivo_url, data_emissao, valido, id_usuario, id_treinamento } = req.body;
     try {
         if (!id_usuario || !id_treinamento || !nome) {
-            return res.status(400).json({ error: 'nome, id_usuario e id_treinamento são obrigatórios' });
+            return res.status(400).json({ error: 'nome, id_usuario e id_treinamento são obrigatórios, prencha todos os campos' });
         }
         // Validar se usuário existe
         const verificarUsuario = await BD.query(
