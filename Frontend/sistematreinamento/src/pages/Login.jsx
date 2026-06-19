@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
-// `api.js` removed — using inline fetch to backend (VITE_API_URL) instead
 import { useNavigate } from 'react-router-dom'
 import EstilosLogin, { coresLogin } from '../styles/EstilosLogin'
 import logo from '../assets/logo.png'
 import { MdEmail, MdLock, MdVisibility, MdVisibilityOff } from 'react-icons/md'
+import { EnderecoServidor } from '../utils.jsx'
 
 export default function Login(){
   const [email, setEmail] = useState('')
@@ -40,7 +40,7 @@ export default function Login(){
     setLoading(true)
     try{
       const dadosLogin = { email, senha }
-      const BASE = import.meta.env.VITE_API_URL || 'http://localhost:3000'
+      const BASE = EnderecoServidor
       const respostaFetch = await fetch(`${BASE}/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
